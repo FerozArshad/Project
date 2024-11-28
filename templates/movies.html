@@ -1,0 +1,20 @@
+<!-- templates/movies.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommended Movies</title>
+</head>
+<body>
+    <h1>Hello, {{ name }}!</h1>
+    <h2>Here are some {{ genre }} movies you might enjoy:</h2>
+    <ul>
+    {% for movie in movies %}
+        <li>
+            <h3>{{ movie['title'] }}</h3>
+            <!-- Link to movie trailer or details -->
+            <a href="https://www.youtube.com/results?search_query={{ movie['title'] }} trailer" target="_blank">Watch Trailer</a>
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

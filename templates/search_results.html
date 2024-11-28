@@ -1,0 +1,34 @@
+<!-- templates/search_results.html -->
+{% extends "base.html" %}
+{% block title %}Search Results - MRS AI{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="mt-4">
+        Search Results
+        {% if query %}
+            for "{{ query }}"
+        {% endif %}
+        {% if genre %}
+            in "{{ genre }}"
+        {% endif %}
+    </h2>
+    {% if movies %}
+    <div class="row">
+        {% for movie in movies %}
+        <div class="col-md-3">
+            <div class="card mb-4 shadow-sm h-100">
+                <img src="https://picsum.photos/seed/{{ movie['id'] }}/300/200" class="card-img-top" alt="{{ movie['title'] }}">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ movie['title'] }}</h5>
+                    <p class="card-text">{{ movie['genres'] }}</p>
+                    <a href="{{ url_for('movie_detail', movie_id=movie['index']) }}" class="btn btn-primary mt-auto">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No results found.</p>
+    {% endif %}
+</div>
+{% endblock %}
